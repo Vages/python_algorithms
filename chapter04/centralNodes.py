@@ -1,5 +1,3 @@
-# A s
-
 '''
 A solution to task 4-4 in the book: 
 
