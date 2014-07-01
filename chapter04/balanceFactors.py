@@ -1,21 +1,17 @@
-def balanceFactors(G, s, B=None, D=None, MD=None, p=None): 	# G must be a full binary tree, two children except for leaf nodes
+# A solution to task 4-20 in the book
+
+def balanceFactors(G, s, d=0, B=None, MD=None): 		# G must be a full binary tree, two children except for leaf nodes
 	if B == None:
 		B = {}						# Dict for balance factors; negative means more on right
-
-	if D == None:
-		D = {}						# Dict for depth of nodes; root = 0
 
 	if MD == None:
 		MD = {}						# Dict for max depth of nodes subtrees (the lowest depth of leaf nodes)
 
-	if p == None:
-		D[s] = 0					# If no parent, this is root node, depth = 0
-	else:
-		D[s] = D[p] + 1 				# Else, depth of parent +1
+	d += 1 							# Increase depth
 
 	if len(G[s]) > 0:					# If not a leaf node ...
 		for v in G[s]:
-			balanceFactors(G, v, B, D, MD, s)	# Run function recursively on its children
+			balanceFactors(G, v, d, B, MD)		# Run function recursively on its children
 		leftChild = G[s][0]
 		rightChild = G[s][1]
 
@@ -25,8 +21,8 @@ def balanceFactors(G, s, B=None, D=None, MD=None, p=None): 	# G must be a full b
 		return B
 
 	else:
-		MD[s] = D[s]					# Max depth is the depth of this leaf node
-		# Note: It is possible to insert a B[D] = 0 here. I have removed it, for the sake of brevity
+		MD[s] = d					# Max depth is the depth of this leaf node
+		B[s] = 0
 
 def main():
 	G = {u:[] for u in range(0,21)}
@@ -42,6 +38,7 @@ def main():
 	G[12] = [19,20]
 
 	print(balanceFactors(G, 0))
+	# All nodes x should have B[x] == 0, except B[1] == -2, B[4] == 1, and B[6] == -1
 
 if __name__ == '__main__':
 	main()
