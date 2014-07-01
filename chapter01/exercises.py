@@ -16,6 +16,7 @@ def extractAlphabeticCharacters(inputString):
 	return outputString
 
 def countLetterOccurrences(inputString):
+	# Note: this is actually my own implementation of a simple collections.Counter()!
 	occurrenceDict = dict()
 
 	for char in inputString:
@@ -59,3 +60,13 @@ def main():
 	print(isAnagrams(string1, string2))
 
 main()
+
+''' I think this solution scales quite well, but I am not certain of it.
+The process of extracting alphabetic characters should be linear 
+(unless appending to the string has some enormous overhead).
+The hashing process involved in counting letter occurences should have
+a linear cost as well. Sorting the key list has an a*log(a) running time,
+but this sorting operation will never scale beyond a=26 because the size
+of the hash table will never exceed the number of characters in the 
+alphabet. '''
+
