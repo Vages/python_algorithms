@@ -1,29 +1,32 @@
-# NOT FINISHED
-
-'''s is the node currently explored, p is the predecessor, B are the Balance factors, d is a dictionary of depth'''
-
-def balanceFactors(G, s, B=None, D=None, p=None): 
+def balanceFactors(G, s, B=None, D=None, MD=None, p=None): 	# G must be a full binary tree, two children except for leaf nodes
 	if B == None:
-		B = {}
+		B = {}						# Dict for balance factors; negative means more on right
 
 	if D == None:
-		D = {}
+		D = {}						# Dict for depth of nodes; root = 0
+
+	if MD == None:
+		MD = {}						# Dict for max depth of nodes subtrees (the lowest depth of leaf nodes)
 
 	if p == None:
-		D[s] = 0
+		D[s] = 0					# If no parent, this is root node, depth = 0
 	else:
-		D[s] = D[p] + 1
+		D[s] = D[p] + 1 				# Else, depth of parent +1
 
-	if len(G[s]) > 0:
+	if len(G[s]) > 0:					# If not a leaf node ...
 		for v in G[s]:
-			balanceFactors(G, v, B, D, s)
+			balanceFactors(G, v, B, D, MD, s)	# Run function recursively on its children
+		leftChild = G[s][0]
+		rightChild = G[s][1]
 
-		B[s] = D[G[s][0]] - D[G[s][1]]
+		B[s] = MD[leftChild] - MD[rightChild]		# The balance factor is calculated from the deepest of left to deepest of right.
+		MD[s] = max(MD[leftChild], MD[rightChild])	# The max depth of this node
 
 		return B
 
 	else:
-		B[s] = 0
+		MD[s] = D[s]					# Max depth is the depth of this leaf node
+		# Note: It is possible to insert a B[D] = 0 here. I have removed it, for the sake of brevity
 
 def main():
 	G = {u:[] for u in range(0,21)}
