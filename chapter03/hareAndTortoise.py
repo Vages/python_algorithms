@@ -1,7 +1,8 @@
 from random import randrange
 from math import ceil
 
-def hareGuess(pickSize): # selects a number and guesses it by bisecting
+def hareGuess(pickSize): 
+	'Generates a random number in range(0, pickSize) and prints the number of operations needed to guess it using bisection.'
 	number = randrange(pickSize) # Pick a random number
 	min = 0
 	max = pickSize # The first number that is too great
@@ -25,6 +26,7 @@ def hareGuess(pickSize): # selects a number and guesses it by bisecting
 
 
 def tortoiseGuess(pickSize):
+	'Generates a random number in range(0, pickSize) and prints the numbers of operations needed to guess it using iteration.'
 	number = randrange(pickSize)
 
 	for i in range(pickSize):

@@ -1,6 +1,7 @@
 # A solution to task 4-20 in the book
 
-def balanceFactors(G, s, d=0, B=None, MD=None): 		# G must be a full binary tree, two children except for leaf nodes
+def balanceFactors(G, s, d=0, B=None, MD=None):
+	'Generates a dictionary the balance factors of each node in G. G must be a full binary tree, and s is the root node.'
 	if B == None:
 		B = {}						# Dict for balance factors; negative means more on right
 
