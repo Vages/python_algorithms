@@ -8,6 +8,7 @@ either one or two central nodes, and describe an algorithm for finding them.
 '''
 
 def centralNodes(G):
+	'Lists the central nodes of the graph G.'
 	count = dict((u, 0) for u in G)		# Create an empty count dictionary
 	
 

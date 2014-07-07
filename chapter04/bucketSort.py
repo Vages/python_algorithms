@@ -1,7 +1,7 @@
 # Answer to exercise 4-12
-# Assumes that the values are evenly distributed in the [0-1) interval
 
 def bucketSort(floatList, n=10):
+	'Sorts the supplied list of floating point numbers (must be in interval [0, 1)) using bucketsort with n buckets (default 10).'
 	bucket = [[] for i in range(n)] 	# Create 10 empty buckets
 	
 	for i in floatList:
